@@ -1,0 +1,22 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-header-one',
+  templateUrl: './header-one.component.html',
+  styleUrls: ['./header-one.component.scss']
+})
+export class HeaderOneComponent {
+  constructor() { }
+
+  ngOnInit(): void {
+    $.getScript("assets/js/menu.js");
+  }
+
+  openMenu() {
+    $("#mySidenav").addClass('open-side');
+  }
+
+  closeMenu() {
+    $("#mySidenav").removeClass('open-side');
+  }
+}

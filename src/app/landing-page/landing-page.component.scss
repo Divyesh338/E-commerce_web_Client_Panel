@@ -1,0 +1,113 @@
+// VARIABLES
+$primary: #0d6efd;
+$dark: #212529;
+$light: #f8f9fa;
+$radius: 14px;
+
+
+// HERO
+.hero {
+    background: linear-gradient(120deg, $primary, #6610f2);
+    color: #fff;
+    padding: 100px 0;
+
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+
+    p {
+        font-size: 1.1rem;
+        margin: 20px 0;
+    }
+}
+
+
+// SECTION TITLE
+.section-title {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+
+// CATEGORIES
+.categories {
+    padding: 80px 0;
+    background: $light;
+
+
+    .category-card {
+        background: #fff;
+        border-radius: $radius;
+        padding: 30px;
+        text-align: center;
+        transition: 0.3s;
+
+
+        i {
+            font-size: 32px;
+            color: $primary;
+            margin-bottom: 10px;
+        }
+
+
+        &:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+
+// PRODUCTS
+.products {
+    padding: 80px 0;
+
+
+    .product-card {
+        background: #fff;
+        border-radius: $radius;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+
+        img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+
+        h6 {
+            font-weight: 600;
+        }
+
+
+        p {
+            color: $primary;
+            font-weight: 700;
+        }
+    }
+}
+
+
+// OFFER
+.offer {
+    background: $primary;
+    color: #fff;
+    padding: 80px 0;
+}
+
+
+// FOOTER
+.footer {
+    background: $dark;
+    color: #adb5bd;
+    text-align: center;
+    padding: 15px 0;
+}
