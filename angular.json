@@ -27,16 +27,19 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "src/styles.scss",
               "src/assets/app.scss",
+              "src/styles.scss",
               "node_modules/ag-grid-community/styles/ag-grid.css",
               "node_modules/ag-grid-community/styles/ag-theme-alpine.css",
+              "node_modules/smartmenus/dist/css/sm-core-css.css",
+              "node_modules/smartmenus/dist/css/sm-blue/sm-blue.css",
               "node_modules/slick-carousel/slick/slick.css",
               "node_modules/slick-carousel/slick/slick-theme.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/smartmenus/dist/jquery.smartmenus.min.js",
               "node_modules/slick-carousel/slick/slick.min.js"
             ]
           },

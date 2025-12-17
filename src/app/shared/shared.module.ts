@@ -37,7 +37,6 @@ import { SettingsComponent } from './header/widgets/settings/settings.component'
   imports: [
     CommonModule,
     RouterModule,
-    // TranslateModule
   ],
   exports: [
     HeaderOneComponent,
@@ -45,7 +44,7 @@ import { SettingsComponent } from './header/widgets/settings/settings.component'
     FooterOneComponent,
     FooterTwoComponent,
     NavBarComponent,
-
+    CopyRightsComponent
   ]
 })
 export class SharedModule { }

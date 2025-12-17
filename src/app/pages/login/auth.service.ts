@@ -6,28 +6,33 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private currentUser: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  private isloggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private loggedIn = false;
+  private message: string;
 
-  constructor(private _router: Router) { }
-
-  get currentUser$() {
-    return this.currentUser.asObservable();
+  constructor(private router: Router) {
+    this.message = "";
   }
 
-  get isLoggedIn$() {
-    return this.isloggedIn.asObservable();
-  }
-
-  authLogin(res: any) {
-    localStorage.setItem('userDetails', JSON.stringify(res));
-    this.currentUser.next(res);
-    this.isloggedIn.next(true);
-    this._router.navigate(['dashboard/default']);
+  login(objUserDetail: any) {
+    if (objUserDetail.UserId == 0) {
+      localStorage.removeItem('userDetails');
+      this.loggedIn = false;
+      this.message = "Please enter valid username & password !";
+    } else {
+      this.message = "";
+      localStorage.setItem('userDetails', JSON.stringify(objUserDetail));
+      this.loggedIn = true;
+      this.router.navigate(['/home/shop']);
+    }
   }
 
   logout() {
-    this.currentUser.next(null);
-    this.isloggedIn.next(false);
+    localStorage.clear();
+    this.loggedIn = false;
+    this.router.navigate(['/pages/login']);
+  }
+
+  public getMessage(): string {
+    return this.message;
   }
 }

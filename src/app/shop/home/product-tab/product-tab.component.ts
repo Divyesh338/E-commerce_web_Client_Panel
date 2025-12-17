@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Product } from 'src/app/shared/types/product.interface';
 
 @Component({
   selector: 'app-product-tab',
@@ -6,5 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./product-tab.component.scss']
 })
 export class ProductTabComponent {
+  @Input() products: Product[] = [];
 
+  constructor() { }
+
+  ngOnInit(): void {
+    $("#tab-1").show();
+
+    $(".tabs li a").on('click', function (e) {
+      e.preventDefault();
+
+      $(this).parent().parent().find('li').removeClass('current');
+      $(this).parent().addClass('current');
+
+      let currentHref = $(this).attr('href');
+      $(this).parent().parent().parent().find('.tab-content').hide();
+      $("#" + currentHref).show();
+    });
+  }
 }

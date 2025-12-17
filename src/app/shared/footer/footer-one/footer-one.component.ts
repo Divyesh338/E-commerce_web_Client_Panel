@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CopyRightsComponent } from '../widgets/copy-rights/copy-rights.component';
 
 @Component({
   selector: 'app-footer-one',

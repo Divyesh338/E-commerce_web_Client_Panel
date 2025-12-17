@@ -2,14 +2,15 @@
 export interface Menu {
     path?: string;
     title?: string;
-    type?: string;
+    type?: 'link' | 'sub';
     megaMenu?: boolean;
+    megaMenuType?: 'small' | 'medium' | 'large';
     children?: Menu[];
 }
 
 export const MENUITEMS: Menu[] = [
     {
-        title: 'clothing', type: 'sub', megaMenu: true, children: [
+        title: 'clothing', type: 'sub', megaMenu: true, megaMenuType: 'large', children: [
             {
                 title: 'mens fashion', type: 'link', children: [
                     { path: '/home/left-sidebar/collection/all', title: 'sports wear', type: 'link' },

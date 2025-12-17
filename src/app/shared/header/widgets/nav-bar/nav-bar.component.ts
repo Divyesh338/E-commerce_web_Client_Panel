@@ -13,5 +13,6 @@ export class NavBarComponent {
 
   ngOnInit(): void {
     this.menuItems = MENUITEMS;
+    console.log(this.menuItems);
   }
 }
