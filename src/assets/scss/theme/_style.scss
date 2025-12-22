@@ -797,7 +797,7 @@ header {
     content: "\f107";
     font-family: $font-awesome;
     position: absolute;
-    right: 3px;
+    right: -16px;
   }
 
   .onhover-show-div {
@@ -3182,7 +3182,7 @@ header {
 
   @for $i from 1 through 40 {
     &.parallax-banner#{$i} {
-      background-image:url("#{$assetspath}/parallax/#{$i}.jpg");
+      background-image:url("../../images/e-comm.webp");
     }
   }
 

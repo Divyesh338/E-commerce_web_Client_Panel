@@ -38,9 +38,11 @@
     "ngx-slick-carousel": "^15.0.0",
     "ngx-slider-v2": "^17.0.0",
     "ngx-toastr": "^15.2.2",
+    "node": "^24.12.0",
     "rxjs": "~7.8.0",
+    "saas": "^1.0.0",
     "slick-carousel": "^1.8.1",
-    "smartmenus": "^1.1.1",
+    "smartmenus": "^1.2.1",
     "sweetalert2": "^11.26.3",
     "tslib": "^2.3.0",
     "zone.js": "^0.12.0"

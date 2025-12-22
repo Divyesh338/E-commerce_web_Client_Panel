@@ -1,5 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { CartService } from 'src/app/shared/services/cart.service';
+import { CompareService } from 'src/app/shared/services/compare.service';
+import { ProductsService } from 'src/app/shared/services/products.service';
 import { Product } from 'src/app/shared/types/product.interface';
+import { WishListComponent } from '../wish-list/wish-list.component';
+import { WhislistService } from 'src/app/shared/services/whislist.service';
 
 @Component({
   selector: 'app-product',
@@ -8,4 +13,28 @@ import { Product } from 'src/app/shared/types/product.interface';
 })
 export class ProductComponent {
   @Input() product!: Product;
+  variantImage: string = '';
+
+  constructor(public _productsService: ProductsService, private _cartService: CartService,
+    private _wishlistService: WhislistService, private _compareService: CompareService) { }
+
+  ngOnInit(): void {
+    this.variantImage = this.product.variants.length > 0 ? this.product.variants[0].images : '';
+  }
+
+  changeVariant(img: string) {
+    this.variantImage = img;
+  }
+
+  addToCart() {
+    this._cartService.addToCart(this.product);
+  }
+
+  addToWishlist() {
+    this._wishlistService.addToWishlist(this.product);
+  }
+
+  addToCompare() {
+    this._compareService.addToCompare(this.product);
+  }
 }

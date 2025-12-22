@@ -15,6 +15,7 @@ export class HomeComponent {
   ngOnInit(): void {
     this._productsService.getProducts().subscribe(res => {
       this.products = res;
+      console.log(res);
     });
   }
 }

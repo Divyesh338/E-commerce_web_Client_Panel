@@ -19,9 +19,11 @@
         <div class="row">
             <div class="col">
                 <ngx-slick-carousel class="product-4 product-m no-arrow" #slickModal="slick-carousel"
-                    [config]="productSliderConfig">
-                    <div ngxSlickItem class="product-box" *ngFor="let product of products | slice:0:16 ">
+                [config]="productSliderConfig">
+                <div ngxSlickItem class="product-box" *ngFor="let product of products | slice:0:16 ">
+                        <h1>{{product}}</h1>
                         <app-product [product]="product"></app-product>
+                         <h1>Hello World</h1>
                     </div>
                 </ngx-slick-carousel>
             </div>

@@ -27,8 +27,6 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SharedModule } from '../shared/shared.module';
-// import { NgxSliderModule } from '@angular-slider/ngx-slider';
-
 
 
 @NgModule({
@@ -62,8 +60,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     BarRatingModule,
     InfiniteScrollModule,
-    // NgxSliderModule 
-
+    Ng5SliderModule 
   ]
 })
 export class ShopModule { }

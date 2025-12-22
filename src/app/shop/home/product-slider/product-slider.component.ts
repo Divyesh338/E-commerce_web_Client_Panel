@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { Product } from 'src/app/shared/types/product.interface';
 
 @Component({
   selector: 'app-product-slider',
   templateUrl: './product-slider.component.html',
-  styleUrls: ['./product-slider.component.scss']
+  styleUrls: ['./product-slider.component.scss'],
 })
 export class ProductSliderComponent {
   @Input() products: Product[] = [];
@@ -42,6 +42,9 @@ export class ProductSliderComponent {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['products']) {
+      console.log("Products Updated:", this.products);
+    }
   }
 }

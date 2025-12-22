@@ -18,8 +18,8 @@ export class LandingPageComponent {
 
   products = [
     { title: 'Wireless Headphones', price: 2499, img: 'assets/images/2.webp' },
-    { title: 'Smart Watch', price: 3999, img: 'assets/products/p2.jpg' },
-    { title: 'Running Shoes', price: 2999, img: 'assets/products/p3.jpg' },
-    { title: 'Backpack', price: 1999, img: 'assets/products/p4.jpg' }
+    { title: 'Smart Watch', price: 3999, img: 'assets/images/2.webp' },
+    { title: 'Running Shoes', price: 2999, img: 'assets/images/2.webp' },
+    { title: 'Backpack', price: 1999, img: 'assets/images/2.webp' }
   ];
 }

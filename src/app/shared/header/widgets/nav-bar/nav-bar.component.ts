@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Menu, MENUITEMS } from '../left-menu/left-menu-items';
+import { Menu, MENUITEMS } from '../nav-bar/nav-bar-items';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,6 +13,5 @@ export class NavBarComponent {
 
   ngOnInit(): void {
     this.menuItems = MENUITEMS;
-    console.log(this.menuItems);
   }
 }
