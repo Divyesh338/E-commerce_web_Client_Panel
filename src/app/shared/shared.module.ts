@@ -12,7 +12,6 @@ import { HeaderTwoComponent } from './header/header-two/header-two.component';
 import { LeftMenuComponent } from './header/widgets/left-menu/left-menu.component';
 import { NavBarComponent } from './header/widgets/nav-bar/nav-bar.component';
 import { TopBarComponent } from './header/widgets/top-bar/top-bar.component';
-// import { TranslateModule } from '@ngx-translate/core';
 import { RouterModule } from '@angular/router';
 import { SettingsComponent } from './header/widgets/settings/settings.component';
 

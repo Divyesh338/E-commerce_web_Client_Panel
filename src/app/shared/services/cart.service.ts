@@ -8,7 +8,7 @@ import { Product } from '../types/product.interface';
   providedIn: 'root'
 })
 export class CartService {
-  products: any[] = JSON.parse(localStorage.getItem("cartItem") ?? "[]");
+  products: any[] = JSON.parse(localStorage.getItem("cartItem") || '[]') || [];
   cartItems: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>([]);
 
   constructor(private _toastr: ToastrService) { }
@@ -28,6 +28,7 @@ export class CartService {
 
 
   addToCart(product: Product, qty: number = 1) {
+    debugger;
     // if product already exits in cartlist (update quantity in cartlist)
     let hasItem = this.products.find((item: CartItem, index: number) => {
       if (item.product.id === product.id) {
@@ -94,4 +95,9 @@ export class CartService {
     localStorage.setItem("cartItem", JSON.stringify(this.products));
   }
 
+
+  hasProduct(product: Product): boolean {
+    let item = this.products.find((item: CartItem) => item.product.id === product.id);
+    return item !== undefined;
+  }
 }

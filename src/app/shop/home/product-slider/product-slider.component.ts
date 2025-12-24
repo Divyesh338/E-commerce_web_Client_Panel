@@ -1,4 +1,5 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, ViewChild } from '@angular/core';
+import { SlickCarouselComponent } from 'ngx-slick-carousel';
 import { Product } from 'src/app/shared/types/product.interface';
 
 @Component({
@@ -8,6 +9,7 @@ import { Product } from 'src/app/shared/types/product.interface';
 })
 export class ProductSliderComponent {
   @Input() products: Product[] = [];
+  @ViewChild('slickModal', { static: false }) slickModal!: SlickCarouselComponent;
 
   productSliderConfig: any = {
     infinite: true,
@@ -45,6 +47,13 @@ export class ProductSliderComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['products']) {
       console.log("Products Updated:", this.products);
+
+      setTimeout(() => {
+        if (this.slickModal) {
+          this.slickModal.unslick();        // destroy old
+          this.slickModal.initSlick();      // re-init slick
+        }
+      });
     }
   }
 }

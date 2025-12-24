@@ -1,0 +1,42 @@
+/* Center slick slides */
+.logo-slider .slick-slide {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Logo container */
+.logo-box {
+    width: 120px;
+    height: 80px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 10px;
+}
+
+/* Logo image */
+.logo-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+    .logo-box {
+        width: 100px;
+        height: 70px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 575px) {
+    .logo-box {
+        width: 90px;
+        height: 60px;
+    }
+}

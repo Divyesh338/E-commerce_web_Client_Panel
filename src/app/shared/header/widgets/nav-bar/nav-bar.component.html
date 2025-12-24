@@ -1,73 +1,75 @@
-<nav id="main-nav">
-    <div class="toggle-nav">
-        <i class="fa fa-bars sidebar-bar"></i>
-    </div>
-    <!-- Sample menu definition -->
-    <ul id="main-menu" class="sm pixelstrap sm-horizontal">
-        <li>
-            <div class="mobile-back text-right">
-                Back<i class="fa fa-angle-right pl-2" aria-hidden="true"></i>
-            </div>
-        </li>
-        <!-- 1st Level Menu -->
-        <li *ngFor="let menuItem of menuItems" [class]="menuItem.megaMenu ? 'mega' : ''"
-            [id]="menuItem.megaMenuType == 'large' ? 'hover-cls' : ''">
-            <!-- Sub -->
-            <a href="javascript:void(0)" *ngIf="menuItem.type === 'sub'">
-                {{menuItem.title }}
-            </a>
-            <!-- Link -->
-            <a [routerLink]="!menuItem.type ? null : [menuItem.path]" *ngIf="menuItem.type === 'link'">
-                {{menuItem.title }}
-            </a>
+<nav class="navbar navbar-expand-lg navbar-light" id="main-nav">
 
-            <!-- 2nd Level Menu -->
-            <ul *ngIf="menuItem.children"
-                [class]="menuItem.megaMenu && menuItem.megaMenuType == 'small' ? 'mega-menu feature-menu' : menuItem.megaMenuType == 'medium' ? 'mega-menu feature-menu product-menu' : menuItem.megaMenuType == 'large' ? 'mega-menu full-mega-menu' : '' "
-                [id]="'mega-menu'">
-                <!-- Large Mega Menu Start-->
-                <ng-container *ngIf="menuItem.megaMenu && menuItem.megaMenuType == 'large'">
-                    <li>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col mega-box" *ngFor="let childrenItem of menuItem.children">
-                                    <div class="link-section">
-                                        <div class="menu-title">
-                                            <h5>{{childrenItem.title }}</h5>
-                                        </div>
-                                        <div class="menu-content">
-                                            <ul>
-                                                <li *ngFor="let childrenSubItem of childrenItem.children">
-                                                    <!-- Link -->
-                                                    <a [routerLink]="!childrenSubItem.type ? null : [childrenSubItem.path]"
-                                                        *ngIf="childrenSubItem.type === 'link'">
-                                                        {{childrenSubItem.title }}
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+    <!-- MOBILE TOGGLE -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenuWrapper"
+        aria-controls="mainMenuWrapper" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- MENU WRAPPER -->
+    <div class="collapse navbar-collapse" id="mainMenuWrapper">
+
+        <ul class="navbar-nav ms-auto pixelstrap sm sm-horizontal main-menu">
+
+            <!-- MOBILE BACK -->
+            <li class="nav-item d-lg-none">
+                <div class="mobile-back text-end px-3 py-2">
+                    Back <i class="fa fa-angle-right ps-2"></i>
+                </div>
+            </li>
+
+            <!-- MAIN MENU ITEMS -->
+            <li class="nav-item" *ngFor="let menuItem of menuItems" [ngClass]="{
+                  'dropdown': menuItem.children,
+                  'mega': menuItem.megaMenu
+                }">
+
+                <!-- HOME / SUB -->
+                <a class="nav-link" *ngIf="menuItem.type === 'sub'"
+                    [routerLink]="menuItem.title === 'home' ? '/home/shop' : null">
+                    {{ menuItem.title }}
+                </a>
+
+                <!-- DIRECT LINK -->
+                <a class="nav-link" *ngIf="menuItem.type === 'link'" [routerLink]="menuItem.path">
+                    {{ menuItem.title }}
+                </a>
+
+                <!-- DROPDOWN / MEGA MENU -->
+                <ul *ngIf="menuItem.children" class="dropdown-menu border-0 shadow" [ngClass]="{
+                      'mega-menu': menuItem.megaMenu,
+                      'full-mega-menu': menuItem.megaMenuType === 'large'
+                    }">
+
+                    <!-- LARGE MEGA MENU -->
+                    <ng-container *ngIf="menuItem.megaMenuType === 'large'">
+                        <li class="px-3 py-3">
+                            <div class="container-fluid">
+                                <div class="row">
+
+                                    <div class="col-lg-3 col-md-6" *ngFor="let childrenItem of menuItem.children">
+
+                                        <h6 class="fw-bold">
+                                            {{ childrenItem.title }}
+                                        </h6>
+
+                                        <ul class="list-unstyled">
+                                            <li *ngFor="let childrenSubItem of childrenItem.children">
+                                                <a class="dropdown-item" [routerLink]="childrenSubItem.path">
+                                                    {{ childrenSubItem.title }}
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
+
                                 </div>
                             </div>
-                        </div>
-                        <div class="row banner-padding">
-                            <div class="col-xl-6">
-                                <a [routerLink]="'/home/left-sidebar/collection/all'" class="mega-menu-banner">
-                                    <img src="assets/images/1.wbp" class="img-fluid d-none d-xl-block"
-                                        alt="">
-                                </a>
-                            </div>
-                            <div class="col-xl-6">
-                                <a [routerLink]="'/home/left-sidebar/collection/all'" class="mega-menu-banner">
-                                    <img src="assets/images/2.wbp" class="img-fluid d-none d-xl-block" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                </ng-container>
-                <!-- Large Mega Menu End-->
-            </ul>
-        </li>
+                        </li>
+                    </ng-container>
 
-    </ul>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
 </nav>

@@ -5,54 +5,43 @@ import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-logo',
   templateUrl: './logo.component.html',
-  styleUrls: ['./logo.component.scss']
+  styleUrls: ['./logo.component.scss'],
 })
 export class LogoComponent {
   logos: any[] = [];
 
   logoSliderConfig = {
-    infinite: true,
-    slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToShow: 5,
+    slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
+    arrows: false,
+    dots: false,
+    infinite: true,
+    centerMode: false,
     responsive: [
       {
-        breakpoint: 1367,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 5
-        }
+        breakpoint: 1200,
+        settings: { slidesToShow: 4 },
       },
       {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4
-        }
+        breakpoint: 992,
+        settings: { slidesToShow: 3 },
       },
       {
-        breakpoint: 767,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3
-        }
+        breakpoint: 576,
+        settings: { slidesToShow: 2 },
       },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
-        }
-      }
-    ]
-
+    ],
   };
-  constructor(private _httpService: HttpService) { }
+
+  constructor(private _httpService: HttpService) {}
 
   ngOnInit(): void {
-    this._httpService.get(environment.BASE_API_PATH + "Brandlogo/GetAll").subscribe(res => {
-      this.logos = res.data;
-    });
+    this._httpService
+      .get(environment.BASE_API_PATH + 'Brandlogo/GetAll')
+      .subscribe((res) => {
+        this.logos = res.data;
+      });
   }
 }

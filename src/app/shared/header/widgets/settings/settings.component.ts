@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CartService } from 'src/app/shared/services/cart.service';
+import { ProductsService } from 'src/app/shared/services/products.service';
+import { CartItem } from 'src/app/shared/types/cart-item.interface';
 
 @Component({
   selector: 'app-settings',
@@ -6,12 +10,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent {
-  // constructor(private _translate: TranslateService) { }
+  shoppingCartItems: CartItem[] = [];
+
+  constructor(private _cartService: CartService, public _productsService: ProductsService) { }
 
   ngOnInit(): void {
+    this._cartService.getItems().subscribe(res => {
+      this.shoppingCartItems = res;
+    });
   }
 
   changeLang(language: string) {
     // this._translate.use(language);
+  }
+  removeItem(item: CartItem) {
+    this._cartService.removeFromCart(item);
+  }
+
+  getTotalAmt(): Observable<number> {
+    return this._cartService.getTotalAmount();
   }
 }

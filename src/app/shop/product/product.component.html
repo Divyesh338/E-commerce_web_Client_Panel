@@ -38,8 +38,8 @@
         <a>
             <h6> {{product.name}}</h6>
         </a>
-        <h4> {{product.price | currency : 'symbol'}}
-            <del><span class="money">{{product.salePrice | currency : 'symbol'}}
+        <h4> {{product.price | currency : _productsService.currency : 'symbol'}}
+            <del><span class="money">{{product.salePrice | currency : _productsService.currency : 'symbol'}}
                 </span></del>
         </h4>
     </div>

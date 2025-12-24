@@ -7,7 +7,7 @@ import { Product } from '../types/product.interface';
   providedIn: 'root'
 })
 export class CompareService {
-  products: any[] = JSON.parse(localStorage.getItem("compateItem") || '') || [];
+  products: any[] = JSON.parse(localStorage.getItem("compateItem") || '[]') || [];
 
   constructor(private _toastr: ToastrService) { }
 

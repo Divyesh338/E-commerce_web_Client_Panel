@@ -7,7 +7,7 @@ import { Product } from '../types/product.interface';
   providedIn: 'root'
 })
 export class WhislistService {
-  products: any[] = JSON.parse(localStorage.getItem("wishlistItem") || '') || [];
+  products: any[] = JSON.parse(localStorage.getItem("wishlistItem") || '[]') || [];
 
   constructor(private _toastr: ToastrService) { }
 

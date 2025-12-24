@@ -1,1 +1,12 @@
-<p>color works!</p>
+<div class="collection-collapse-block open">
+    <h3 class="collapse-block-title" id="colorToggleId">colors</h3>
+    <div class="collection-collapse-block-content" id="colorToggle">
+        <div class="color-selector">
+            <ul>
+                <li *ngFor="let cl of colors" [ngClass]="cl.color.toLowerCase()"
+                    [class.active]="activeColor === cl.color" (click)="selectColor(activeColor === cl.color ? {} : cl)">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

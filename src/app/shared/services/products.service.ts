@@ -30,6 +30,7 @@ export class ProductsService {
       if (catg === 'all') {
         return true;
       }
+      debugger;
       return p.category === catg;
     })));
   }
