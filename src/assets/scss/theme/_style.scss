@@ -1538,19 +1538,45 @@ header {
       content: "\f104";
     }
   }
+.home {
+  position: relative;
+  height: 75vh;
+  min-height: 420px;
+  background-repeat: no-repeat;
+  background-position: right center;   
+  background-size: 29%;                
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
 
-  .home {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 75vh;
+  .slider-contain {
+    position: relative;
+    z-index: 2;
+    text-align: left;
+    max-width: 500px;
+  }
 
-    @for $i from 1 through 5 {
-      &.home#{$i} {
-        background-image:url("#{$assetspath}/home-banner/#{$i}.jpg");
-      }
+  // Optional light overlay (only on left)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0)
+    );
+    z-index: 1;
+  }
+
+  @for $i from 1 through 5 {
+    &.home#{$i} {
+      background-image: url("#{$assetspath}/home-banner/#{$i}.webp");
     }
   }
+}
+
+
 
   .slider-contain {
     width: 100%;

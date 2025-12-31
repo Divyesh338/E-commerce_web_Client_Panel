@@ -46,7 +46,6 @@ export class ProductSliderComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['products']) {
-      console.log("Products Updated:", this.products);
 
       setTimeout(() => {
         if (this.slickModal) {

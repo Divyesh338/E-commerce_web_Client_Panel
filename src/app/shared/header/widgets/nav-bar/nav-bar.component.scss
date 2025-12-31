@@ -1,0 +1,133 @@
+/* ============================= */
+/* BASE NAV */
+/* ============================= */
+
+#main-nav {
+  position: relative;
+  width: 100%;
+}
+
+#main-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#main-menu > li {
+  position: relative;
+}
+
+/* ============================= */
+/* MEGA MENU FIX (MAIN ISSUE) */
+/* ============================= */
+
+#main-menu .mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 50% !important;            /* 🔥 center */
+  transform: translateX(-50%);
+  width: 100vw;                    /* full width */
+  max-width: 1200px;               /* controlled */
+  background: #fff;
+  padding: 25px 30px;
+  z-index: 9999;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  display: none;
+}
+
+/* SHOW ON HOVER (DESKTOP) */
+@media (min-width: 992px) {
+  #main-menu > li:hover > .mega-menu {
+    display: block;
+  }
+}
+
+/* ============================= */
+/* LARGE MEGA MENU FORCE */
+/* ============================= */
+
+#main-menu .full-mega-menu {
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+
+/* ============================= */
+/* CONTENT STYLES */
+/* ============================= */
+
+.mega-box {
+  padding: 10px 15px;
+}
+
+.menu-title h5 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.menu-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-content ul li a {
+  display: block;
+  padding: 6px 0;
+  color: #555;
+  text-decoration: none;
+}
+
+.menu-content ul li a:hover {
+  color: #000;
+}
+
+/* ============================= */
+/* BANNER FIX */
+/* ============================= */
+
+.mega-menu-banner img,
+.banner-padding img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+/* ============================= */
+/* MOBILE FIX (NO OVERFLOW) */
+/* ============================= */
+
+@media (max-width: 991px) {
+
+  #main-menu {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    background: #fff;
+    overflow-y: auto;
+    transition: 0.3s ease;
+    z-index: 10000;
+  }
+
+  /* Pixelstrap usually adds 'open' or 'active' */
+  #main-menu.open,
+  #main-menu.active {
+    left: 0;
+  }
+
+  #main-menu .mega-menu {
+    position: static !important;
+    transform: none !important;
+    width: 100%;
+    max-width: 100%;
+    padding: 15px;
+    box-shadow: none;
+    display: none;
+  }
+
+  li.open > .mega-menu,
+  li.active > .mega-menu {
+    display: block;
+  }
+}
