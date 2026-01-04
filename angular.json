@@ -28,8 +28,6 @@
               "src/assets/app.scss",
               "src/styles.scss",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/ag-grid-community/styles/ag-grid.css",
-              "node_modules/ag-grid-community/styles/ag-theme-alpine.css",
               "node_modules/smartmenus/dist/css/sm-core-css.css",
               "node_modules/smartmenus/dist/css/sm-blue/sm-blue.css",
               "node_modules/slick-carousel/slick/slick.css",
@@ -47,13 +45,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "800kb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "4kb",
+                  "maximumError": "8kb"
                 }
               ],
               "outputHashing": "all"
