@@ -38,7 +38,6 @@ export class ContactUsComponent {
 
   PostData(formData: any) {
     this.submitted = true;
-    debugger;
     // stop here if form is invalid
     if (this.contactusForm.invalid) {
       return;

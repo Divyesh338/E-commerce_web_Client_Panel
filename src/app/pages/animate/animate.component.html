@@ -1,0 +1,9 @@
+<div class="container">
+  <button (click)="toggle()">
+    Toggle Box
+  </button>
+
+  <div *ngIf="showBox" class="box" @fadeSlide>
+    Hello Angular Animations 👋
+  </div>
+</div>

@@ -6,11 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit {
-  ngOnInit(): void {
-    $('#categoryToggleId').on('click', function (e) {
-      e.preventDefault();
-      //$("#categoryToggle").slideToggle();
-      $(this).next('#categoryToggle').slideToggle();
-    });
+  isOpen = true;
+
+  toggleCategory() {
+    this.isOpen = !this.isOpen;
   }
+
+  ngOnInit(): void {}
 }

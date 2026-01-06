@@ -1,0 +1,118 @@
+/* SECTION WRAPPER */
+.title1.section-t-space {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* SMALL TITLE */
+.title1 h4 {
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #ff4c3b;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+/* MAIN TITLE */
+.title-inner1 {
+    font-size: 42px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #222;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* DECORATIVE LINE */
+.title-inner1::after {
+    content: '';
+    width: 70px;
+    height: 3px;
+    background: #ff4c3b;
+    display: block;
+    margin: 12px auto 0;
+    border-radius: 10px;
+}
+
+/* PARAGRAPH */
+.product-para p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.8;
+    margin-top: 10px;
+}
+
+/* SOFT FADE-IN ANIMATION */
+.title1,
+.product-para {
+    animation: fadeUp 0.9s ease forwards;
+}
+
+/* PRODUCT SLIDER FIX */
+.product-4 .product-box {
+    height: 100%;
+    display: flex;
+}
+
+/* PRODUCT CARD */
+.product-4 app-product {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* IMAGE WRAPPER (COMMON IN MOST PRODUCT COMPONENTS) */
+.product-4 app-product img {
+    width: 100%;
+    height: 260px;
+    /* 🔥 SET FIXED HEIGHT */
+    object-fit: cover;
+    /* keeps aspect ratio */
+    display: block;
+}
+
+/* OPTIONAL: CENTER IMAGE IF INSIDE WRAPPER */
+.product-4 .img-wrapper,
+.product-4 .product-image {
+    height: 260px;
+    overflow: hidden;
+}
+
+/* MAKE CARD BODY FLEX */
+.product-4 .product-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* REMOVE JUMPING HEIGHT IN SLIDER */
+.product-4 .slick-track {
+    display: flex;
+}
+
+.product-4 .slick-slide {
+    height: auto;
+}
+
+
+/* ANIMATION */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .title-inner1 {
+        font-size: 30px;
+    }
+}

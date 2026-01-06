@@ -1,0 +1,77 @@
+.category-section {
+  padding-bottom: 0;
+}
+
+/* GRID WRAPPER */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-auto-rows: auto;
+  gap: 20px;
+}
+
+/* GRID ITEM */
+.category-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  display: block;
+}
+
+/* IMAGE */
+.category-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* OVERLAY */
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.193),
+    rgba(0, 0, 0, 0.15)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 25px;
+  text-align: center;
+  color: #fff;
+  transition: background 0.4s ease;
+}
+
+/* TEXT */
+.category-overlay h4 {
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.category-overlay h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* HOVER EFFECT */
+.category-item:hover img {
+  transform: scale(1.08);
+}
+
+.category-item:hover .category-overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* RESPONSIVE */
+@media (max-width: 576px) {
+  .category-overlay h2 {
+    font-size: 22px;
+  }
+}

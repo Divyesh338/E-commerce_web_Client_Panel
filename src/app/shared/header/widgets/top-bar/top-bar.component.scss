@@ -1,0 +1,16 @@
+.topbar-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+    transition: background-color 0.3s ease;
+}
+
+.topbar-dark {
+    background-color: #000 !important;
+}
+
+.topbar-dark * {
+    color: #fff !important;
+}
+

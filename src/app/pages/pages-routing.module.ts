@@ -6,41 +6,46 @@ import { FAQComponent } from './faq/faq.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AnimateComponent } from './animate/animate.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       {
+        path: 'animate',
+        component: AnimateComponent,
+      },
+      {
         path: 'about-us',
-        component: AboutUsComponent
+        component: AboutUsComponent,
       },
       {
         path: 'contact-us',
-        component: ContactUsComponent
+        component: ContactUsComponent,
       },
       {
         path: 'faq',
-        component: FAQComponent
+        component: FAQComponent,
       },
       {
         path: '404',
-        component: ErrorPageComponent
+        component: ErrorPageComponent,
       },
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
       },
       {
         path: 'register',
-        component: RegistrationComponent
-      }
-    ]
-  }
+        component: RegistrationComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PagesRoutingModule { }
+export class PagesRoutingModule {}

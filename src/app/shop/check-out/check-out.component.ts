@@ -8,50 +8,51 @@ import { OrdersService } from 'src/app/shared/services/orders.service';
 import { ProductsService } from 'src/app/shared/services/products.service';
 import { CartItem } from 'src/app/shared/types/cart-item.interface';
 import { environment } from 'src/environments/environment.prod';
+declare var paypal: any;
 
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.component.html',
-  styleUrls: ['./check-out.component.scss']
+  styleUrls: ['./check-out.component.scss'],
 })
 export class CheckOutComponent implements OnInit {
-
   checkoutForm!: FormGroup;
   checkOutItems: CartItem[] = [];
+
   amount = 0;
   totalAmount = 0;
   shippingAmount = 40;
 
-  handler: any;
   orderPayload: any;
+
+  paypalLoaded = false;
+  paypalRendered = false;
 
   constructor(
     public productsService: ProductsService,
-    private _dataService: HttpService,
-    private _fb: FormBuilder,
-    private _toastr: ToastrService,
+    private fb: FormBuilder,
+    private toastr: ToastrService,
     private cartService: CartService,
+    private http: HttpService,
     private orderService: OrdersService
   ) {}
 
-  // ---------------- INIT ----------------
   ngOnInit(): void {
-    this.createRegForm();
-    this.loadStripe();
+    this.createForm();
+    this.loadPayPalScript();
 
-    this.cartService.getItems().subscribe(items => {
+    this.cartService.getItems().subscribe((items) => {
       this.checkOutItems = items;
     });
 
-    this.getTotal().subscribe(total => {
+    this.getTotal().subscribe((total) => {
       this.amount = total;
       this.totalAmount = total + this.shippingAmount;
     });
   }
 
-  // ---------------- FORM ----------------
-  createRegForm() {
-    this.checkoutForm = this._fb.group({
+  createForm() {
+    this.checkoutForm = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       phone: ['', Validators.required],
@@ -60,29 +61,27 @@ export class CheckOutComponent implements OnInit {
       country: ['', Validators.required],
       town: ['', Validators.required],
       state: ['', Validators.required],
-      postalcode: ['', Validators.required]
+      postalcode: ['', Validators.required],
     });
   }
 
-  // ---------------- CART TOTAL ----------------
   getTotal(): Observable<number> {
     return this.cartService.getTotalAmount();
   }
 
-  // ---------------- SUBMIT ----------------
   onSubmit() {
     if (this.checkoutForm.invalid) {
-      this._toastr.error('Please fill all required fields');
+      this.toastr.error('Please fill all required fields');
       return;
     }
-    debugger;
-    const items = this.checkOutItems.map(i => ({
+
+    const items = this.checkOutItems.map((i) => ({
       ProductId: i.product.id,
       Quantity: i.quantity.toString(),
       Size: '',
       Color: '',
       Price: i.product.price.toString(),
-      Discount: i.product.discount.toString()
+      Discount: i.product.discount.toString(),
     }));
 
     this.orderPayload = {
@@ -90,54 +89,84 @@ export class CheckOutComponent implements OnInit {
       ...this.checkoutForm.value,
       amount: this.amount.toString(),
       shippingAmount: this.shippingAmount.toString(),
-      paymentTypeId: 1,
+      paymentTypeId: 2,
       items,
-      payment: {}
+      payment: {},
     };
 
-    this.handler.open({
-      name: 'Sahosoft Mall',
-      description: 'E-commerce Purchase',
-      currency: 'INR',
-      amount: this.totalAmount * 100
-    });
-  }
+    const container = document.getElementById('paypal-button-container');
+    if (container) container.style.display = 'block';
 
-  // ---------------- STRIPE LOAD ----------------
-  loadStripe() {
-    debugger;
-    if (!document.getElementById('stripe-script')) {
-      const s = document.createElement('script');
-      s.id = 'stripe-script';
-      s.src = 'https://checkout.stripe.com/checkout.js';
-
-      s.onload = () => {
-        this.handler = (window as any).StripeCheckout.configure({
-          key: environment.stripePublicKey, // pk_test_xxx
-          locale: 'auto',
-          token: (token: any) => {
-            this.processPayment(token);
-          }
-        });
-      };
-
-      document.body.appendChild(s);
+    if (!this.paypalRendered && this.paypalLoaded) {
+      this.renderPayPalButton();
+      this.paypalRendered = true;
     }
   }
 
-  // ---------------- PAYMENT ----------------
-  processPayment(token: any) {
-    this.orderPayload.payment = {
-      tokenId: token.id,
-      amount: this.totalAmount.toString(),
-      description: 'Shopping with Sahosoft Mall'
+  loadPayPalScript() {
+    if (document.getElementById('paypal-sdk')) {
+      this.paypalLoaded = true;
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.id = 'paypal-sdk';
+    script.src = `https://www.paypal.com/sdk/js?client-id=${environment.paypalClientId}&currency=USD`;
+
+    script.onload = () => {
+      this.paypalLoaded = true;
     };
-    debugger;
-    this._dataService
-      .post(environment.BASE_API_PATH + 'PaymentMaster/Save/', this.orderPayload)
-      .subscribe(res => {
+
+    document.body.appendChild(script);
+  }
+
+  renderPayPalButton() {
+    paypal
+      .Buttons({
+        createOrder: (_: any, actions: any) => {
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  currency_code: 'USD',
+                  value: this.totalAmount.toString(),
+                },
+              },
+            ],
+          });
+        },
+
+        onApprove: (_: any, actions: any) => {
+          return actions.order.capture().then((details: any) => {
+            this.processPayment(details);
+          });
+        },
+
+        onError: (err: any) => {
+          console.error(err);
+          this.toastr.error('PayPal payment failed');
+        },
+      })
+      .render('#paypal-button-container');
+  }
+
+  processPayment(details: any) {
+    this.orderPayload.payment = {
+      paymentId: details.id,
+      payerId: details.payer.payer_id,
+      paymentMethod: 'PayPal',
+      amount: this.totalAmount.toString(),
+      status: details.status,
+    };
+
+    this.http
+      .post(
+        environment.BASE_API_PATH + 'PaymentMaster/Save/',
+        this.orderPayload
+      )
+      .subscribe((res: any) => {
         if (res.isSuccess) {
-          this._toastr.success('Payment successful');
+          this.toastr.success('Payment successful');
 
           this.orderService.setOrderDetils({
             product: this.checkOutItems,
@@ -145,12 +174,12 @@ export class CheckOutComponent implements OnInit {
             orderId: res.data.orderId,
             totalAmount: this.totalAmount,
             expectedDate: res.data.expecteddate,
-            paymentDate: res.data.paymentDate
+            paymentDate: res.data.paymentDate,
           });
 
           this.checkoutForm.reset();
         } else {
-          this._toastr.error(res.errors[0]);
+          this.toastr.error(res.errors[0]);
         }
       });
   }
