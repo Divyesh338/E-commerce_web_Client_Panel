@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment.prod';
   providedIn: 'root'
 })
 export class ProductsService {
-  currency: string = "INR";
+  currency: string = "USD";
 
   constructor(private _httpClient: HttpClient) { }
 

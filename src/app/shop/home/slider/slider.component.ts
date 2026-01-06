@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class SliderComponent {
   SliderConfig = {
     autoPlay: true,
-    autoplaySpeed: 3000
+    autoplaySpeed: 2000
   };
 
   constructor() { }

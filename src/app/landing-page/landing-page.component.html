@@ -1,55 +1,42 @@
-<section class="hero">
-    <div class="row align-items-center">
-        <div class="col-md-6">
-            <h1>Shop Smarter, Live Better</h1>
-            <p>Best deals on top quality products delivered to your doorstep.</p>
-            <button class="btn btn-primary btn-lg">Shop Now</button>
-        </div>
-        <div class="col-md-6 text-center">
-            <img src="assets/images/2.webp" class="img-fluid" alt="Shop">
-        </div>
+<header>
+  <div class="logo">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/icons/Editor/sketching.svg" type="image/x-icon">
+  </div>
+  <div class="menu">
+    <ul>
+      <li><a routerLink="home/shop">Home</a></li>
+      <li><a routerLink="home/cart">Cart</a></li>
+      <li><a routerLink="home/compare">Compare</a></li>
+      <li><a routerLink="home/wishlist">WishList</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="content">
+  <div class="men common" #commonSection>
+    <div class="img">
+      <img src="assets/images/landingpage/wall4.jpg" alt="Mens Clothings">
+      <div class="image-overLay"></div>
     </div>
-</section>
-
-
-<!-- CATEGORIES -->
-<section class="categories">
-    <div class="container">
-        <h2 class="section-title">Shop by Category</h2>
-        <div class="row">
-            <div class="col-md-3" *ngFor="let c of categories">
-                <div class="category-card">
-                    <i class="bi" [ngClass]="c.icon"></i>
-                    <h6>{{ c.name }}</h6>
-                </div>
-            </div>
-        </div>
+    <div class="text">
+      <h1>Men</h1>
+      <h5>Fashion</h5>
     </div>
-</section>
-
-
-<!-- PRODUCTS -->
-<section class="products">
-    <div class="container">
-        <h2 class="section-title">Trending Products</h2>
-        <div class="row">
-            <div class="col-md-3" *ngFor="let p of products">
-                <div class="product-card">
-                    <img [src]="p.img" alt="product">
-                    <h6>{{ p.title }}</h6>
-                    <p>₹{{ p.price }}</p>
-                    <button class="btn btn-outline-primary w-100">Add to Cart</button>
-                </div>
-            </div>
-        </div>
+    <div class="btn">
+      <a routerLink="home/shop">Shop Now</a>
     </div>
-</section>
-
-
-<!-- OFFER -->
-<section class="offer">
-    <div class="container text-center">
-        <h2>Flat 30% Off on First Order</h2>
-        <button class="btn btn-light btn-lg">Grab Deal</button>
+  </div>
+  <div class="Women common" #commonSection>
+    <div class="img">
+      <img src="assets/images/landingpage/wall3.jpg" alt="Womens Clothings">
+      <div class="image-overLay"></div>
     </div>
-</section>
+    <div class="text">
+      <h1>Women</h1>
+      <h5>Fashion</h5>
+    </div>
+    <div class="btn">
+      <a routerLink="home/shop">Shop Now</a>
+    </div>
+  </div>
+</div>

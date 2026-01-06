@@ -1,16 +1,20 @@
-<!-- Home slider -->
-<section class="p-0">
+<!-- Home Slider -->
+<section class="p-0 home-slider-section">
     <ngx-slick-carousel class="home-slider" #slickModal="slick-carousel" [config]="SliderConfig">
+
+        <!-- Slide 1 -->
         <div ngxSlickItem>
-            <div class="home home1 text-center">
+            <div class="home home-img-1 text-center">
                 <div class="container">
                     <div class="row">
                         <div class="col">
                             <div class="slider-contain">
-                                <div>
+                                <div class="content">
                                     <h4>welcome to fashion</h4>
-                                    <h1>Men fashion</h1>
-                                    <a class="btn btn-solid" routerLink="/home/left-sidebar/collection/men">shop now</a>
+                                    <h1>Men Fashion</h1>
+                                    <a class="btn btn-solid" routerLink="/home/left-sidebar/collection/men">
+                                        Shop Now
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -18,17 +22,20 @@
                 </div>
             </div>
         </div>
+
+        <!-- Slide 2 -->
         <div ngxSlickItem>
-            <div class="home home2 text-center">
+            <div class="home home-img-2 text-center">
                 <div class="container">
                     <div class="row">
                         <div class="col">
                             <div class="slider-contain">
-                                <div>
+                                <div class="content">
                                     <h4>welcome to fashion</h4>
-                                    <h1>Women fashion</h1>
-                                    <a class="btn btn-solid" routerLink="/home/left-sidebar/collection/women">shop
-                                        now</a>
+                                    <h1>Women Fashion</h1>
+                                    <a class="btn btn-solid" routerLink="/home/left-sidebar/collection/women">
+                                        Shop Now
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -36,6 +43,7 @@
                 </div>
             </div>
         </div>
+
     </ngx-slick-carousel>
 </section>
-<!-- Home slider end -->
+<!-- Home Slider End -->

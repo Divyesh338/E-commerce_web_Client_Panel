@@ -1,113 +1,133 @@
-// VARIABLES
-$primary: #0d6efd;
-$dark: #212529;
-$light: #f8f9fa;
-$radius: 14px;
 
+header {
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 50px;
+    height: 80px;
+    align-items: center;
+}
 
-// HERO
-.hero {
-    background: linear-gradient(120deg, $primary, #6610f2);
+header .logo img {
+    height: 60px;
     color: #fff;
-    padding: 100px 0;
-
-
-    h1 {
-        font-size: 3rem;
-        font-weight: 700;
-    }
-
-
-    p {
-        font-size: 1.1rem;
-        margin: 20px 0;
-    }
+    background-color: aqua;
+    width: 120px;
+    cursor: pointer;
 }
 
-
-// SECTION TITLE
-.section-title {
-    text-align: center;
-    font-weight: 700;
-    margin-bottom: 40px;
+.menu ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 25px;
 }
 
-
-// CATEGORIES
-.categories {
-    padding: 80px 0;
-    background: $light;
-
-
-    .category-card {
-        background: #fff;
-        border-radius: $radius;
-        padding: 30px;
-        text-align: center;
-        transition: 0.3s;
-
-
-        i {
-            font-size: 32px;
-            color: $primary;
-            margin-bottom: 10px;
-        }
-
-
-        &:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-        }
-    }
-}
-
-
-// PRODUCTS
-.products {
-    padding: 80px 0;
-
-
-    .product-card {
-        background: #fff;
-        border-radius: $radius;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-
-
-        img {
-            width: 100%;
-            height: 180px;
-            object-fit: contain;
-            margin-bottom: 15px;
-        }
-
-
-        h6 {
-            font-weight: 600;
-        }
-
-
-        p {
-            color: $primary;
-            font-weight: 700;
-        }
-    }
-}
-
-
-// OFFER
-.offer {
-    background: $primary;
+.menu ul li a {
     color: #fff;
-    padding: 80px 0;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
 }
 
+.menu ul li a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: 0.5s;
+}
 
-// FOOTER
-.footer {
-    background: $dark;
-    color: #adb5bd;
+.menu ul li a:hover::before {
+    width: 120%;
+}
+
+/* CONTENT */
+.content {
+    display: flex;
+    height: calc(100vh - 80px);
+    /* full screen minus header */
+}
+
+/* COMMON SECTION */
+.common {
+    width: 50%;
+    position: relative;
+}
+
+/* IMAGE */
+.img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-overLay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    transform: translateY(0%);
+    z-index: 5;
+}
+
+.text {
+    position: absolute;
+    bottom: 80px;
+    width: 100%;
     text-align: center;
-    padding: 15px 0;
+    z-index: 10;
+}
+
+.text h1 {
+    font-size: 82px;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.text h5 {
+    font-size: 28px;
+    letter-spacing: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 800;
+}
+
+.btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.btn a {
+    display: inline-block;
+    border: 1px solid #fff;
+    padding: 25px 50px;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: 0;
+    transition: 0.5s;
+    transform: scale(0.9);
+}
+
+.common:hover .btn a {
+    opacity: 1;
+}
+
+.btn a:hover {
+    background-color: #fff;
+    color: #000;
 }

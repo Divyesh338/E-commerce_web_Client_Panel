@@ -1,0 +1,10 @@
+.collection-collapse-block-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+
+    &.open {
+        max-height: 500px;
+        /* enough to show all items */
+    }
+}

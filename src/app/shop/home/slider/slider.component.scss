@@ -1,12 +1,104 @@
-@media (max-width: 991px) {
-  .home {
-    background-size: 50%;
-  }
+/* FULL WIDTH SLIDER */
+.home-slider,
+.home-slider .slick-list,
+.home-slider .slick-track {
+  height: 100vh;
 }
 
-@media (max-width: 575px) {
-  .home {
-    background-size: 65%;
-    background-position: center bottom;
+/* COMMON SLIDE STYLE */
+.home {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* MEN SLIDE IMAGE */
+.home-img-1 {
+  background-image: url('https://images.unsplash.com/photo-1505022610485-0249ba5b3675?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
+}
+
+/* WOMEN SLIDE IMAGE */
+.home-img-2 {
+  background-image: url('https://plus.unsplash.com/premium_photo-1661386240475-2ad1515d5db6?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+}
+
+/* DARK OVERLAY FOR TEXT VISIBILITY */
+.home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.147);
+  z-index: 1;
+}
+
+/* TEXT CONTAINER */
+.slider-contain {
+  position: relative;
+  z-index: 2;
+}
+
+/* TEXT STYLE */
+.slider-contain h4 {
+  color: #ffffff;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.slider-contain h1 {
+  color: #ffffff;
+  font-size: 64px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+/* BUTTON STYLE */
+.slider-contain .btn-solid {
+  background: #ff4c3b;
+  color: #fff;
+  padding: 12px 35px;
+  border-radius: 30px;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.slider-contain .btn-solid:hover {
+  background: #000;
+  transform: translateY(-4px);
+}
+
+/* CENTER TEXT */
+.text-center {
+  text-align: center;
+}
+
+/* DOTS STYLE */
+::ng-deep .slick-dots {
+  bottom: 30px;
+}
+
+::ng-deep .slick-dots li button:before {
+  color: #fff;
+  opacity: 0.5;
+}
+
+::ng-deep .slick-dots li.slick-active button:before {
+  color: #ff4c3b;
+  opacity: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .slider-contain h1 {
+    font-size: 36px;
   }
 }

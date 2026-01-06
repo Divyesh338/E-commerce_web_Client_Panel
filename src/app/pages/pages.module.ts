@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { AnimateComponent } from './animate/animate.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ToastrModule } from 'ngx-toastr';
     ContactUsComponent,
     FAQComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AnimateComponent
   ],
   imports: [
     CommonModule,
