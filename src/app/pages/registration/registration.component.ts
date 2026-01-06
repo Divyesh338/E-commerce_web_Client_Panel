@@ -42,8 +42,6 @@ export class RegistrationComponent {
 
   onSubmit(formData: any) {
     this.submitted = true;
-    console.log(formData);
-    debugger;
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
@@ -53,7 +51,6 @@ export class RegistrationComponent {
       data => {
         if (data.isSuccess) {
           this._toastr.info('Data saved successfully! ', 'CREATE ACCOUNT');
-          debugger;
           this._router.navigate(['pages/login'])
           this.registerForm.reset();
         } else {

@@ -20,7 +20,7 @@
             <div class="col">
                 <ngx-slick-carousel class="product-4 product-m no-arrow" #slickModal="slick-carousel"
                     [config]="productSliderConfig">
-                    <div ngxSlickItem class="product-box" *ngFor="let product of products | slice:0:16 ">
+                    <div ngxSlickItem class="product-box" *ngFor="let product of products | slice:0:7 ">
                         <app-product [product]="product"></app-product>
                     </div>
                 </ngx-slick-carousel>

@@ -8,11 +8,14 @@ import { Product } from 'src/app/shared/types/product.interface';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss']
+  styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent implements OnInit {
-
-
+  product?: Product;
+  counter = 1;
+  selectedSize = '';
+  activeTab: 'description' | 'short' = 'description';
+  selectedImage!: string;
   slideConfig = {
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -21,64 +24,78 @@ export class ProductDetailsComponent implements OnInit {
   };
 
   slideNavConfig = {
-    vertical: false,
     slidesToShow: 3,
     slidesToScroll: 1,
-    asNavFor: '.product-slick',
     arrows: false,
-    dots: false,
-    focusOnSelect: true
-  }
+    focusOnSelect: true,
+  };
 
-  product!: Product;
-  products: Product[] = [];
-  counter: number = 1;
-  selectedSize: string = "";
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    public _productsService: ProductsService,
+    private _cartService: CartService,
+    private _wishlistService: WhislistService
+  ) {}
 
-  constructor(private _route: ActivatedRoute, private router: Router, public _productsService: ProductsService,
-    private _cartService: CartService, private _wishlistService: WhislistService) {
-    this._route.params.subscribe(params => {
-      let id = params['id'];
+  ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      const id = Number(params['id']);
+      if (!id) return;
 
-      this._productsService.getProduct(parseInt(id)).subscribe(res => {
-        this.product = res!;
-      })
+      this._productsService.getProduct(id).subscribe((product) => {
+        this.product = product || undefined;
+
+        // ✅ SET DEFAULT IMAGE
+        if (this.product?.pictures?.length) {
+          this.selectedImage = this.product.pictures[0];
+        }
+      });
     });
   }
 
-  ngOnInit(): void {
+  selectImage(img: string) {
+    this.selectedImage = img;
   }
 
+  trackByImage(index: number, image: string): string {
+    return image;
+  }
 
   changeSize(size: string) {
     this.selectedSize = size;
   }
 
   increment() {
-    this.counter += 1;
+    if (this.product && this.counter < this.product.stock) {
+      this.counter++;
+    }
   }
 
   decrement() {
     if (this.counter > 1) {
-      this.counter -= 1;
+      this.counter--;
     }
   }
 
   addToCart() {
+    if (!this.product) return;
     this._cartService.addToCart(this.product, this.counter);
   }
 
   addToWishlist() {
+    if (!this.product) return;
     this._wishlistService.addToWishlist(this.product);
   }
 
   buyNow() {
-    if (this.counter > 0) {
-      let isExists = this._cartService.hasProduct(this.product);
-      if (!isExists) {
-        this._cartService.addToCart(this.product, this.counter);
-      }
-      this.router.navigate(['/home/checkout']);
+    if (!this.product) return;
+
+    const exists = this._cartService.hasProduct(this.product);
+    if (!exists) {
+      this._cartService.addToCart(this.product, this.counter);
     }
+
+    this.router.navigate(['/home/checkout']);
   }
 }

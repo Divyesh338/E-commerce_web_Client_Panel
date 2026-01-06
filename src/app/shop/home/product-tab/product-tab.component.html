@@ -19,14 +19,14 @@
                     <div class="tab-content-cls">
                         <div class="tab-content" id="tab-1">
                             <div class="no-slider row">
-                                <div class="product-box" *ngFor="let product of products | slice:16:24">
+                                <div class="product-box" *ngFor="let product of products | slice:5:11">
                                     <app-product [product]="product"></app-product>
                                 </div>
                             </div>
                         </div>
                         <div class="tab-content" id="tab-2">
                             <div class="no-slider row">
-                                <div class="product-box" *ngFor="let product of products | slice:24:30">
+                                <div class="product-box" *ngFor="let product of products | slice:0:4">
                                     <app-product [product]="product"></app-product>
                                 </div>
                             </div>

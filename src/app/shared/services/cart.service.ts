@@ -28,7 +28,6 @@ export class CartService {
 
 
   addToCart(product: Product, qty: number = 1) {
-    debugger;
     // if product already exits in cartlist (update quantity in cartlist)
     let hasItem = this.products.find((item: CartItem, index: number) => {
       if (item.product.id === product.id) {
