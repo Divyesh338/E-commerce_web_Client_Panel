@@ -37,7 +37,6 @@
     "ngx-bar-rating": "^3.0.0",
     "ngx-infinite-scroll": "^15.0.0",
     "ngx-slick-carousel": "^15.0.0",
-    "ngx-slider-v2": "^17.0.0",
     "ngx-toastr": "^15.2.2",
     "paypal": "^1.0.1",
     "rxjs": "~7.8.0",
